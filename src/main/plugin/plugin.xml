@@ -1,0 +1,58 @@
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://www.jivesoftware.com/schemas/clearspace/2_5/plugin.xsd">
+    <name>appsnapplugin</name>
+    <description>This plugin gives you the flexibility of capturing JVM thread dumps from the admin console.
+    </description>
+    <author>Israel Ogbole</author>
+    <version>1.0.0</version>
+    <minServerVersion>6.0.1.0</minServerVersion>
+    <maxServerVersion>6.0.3.0</maxServerVersion>
+
+    <databaseKey>database-query</databaseKey>
+    <databaseVersion>1050302</databaseVersion>
+
+    <!-- you will want to change your class name here! -->
+    <class>com.jivesoftware.appsnapplugin.AppsnapPlugin</class>
+
+    <!--
+     <authorURL>
+     <pluginURL>
+     <databaseKey>
+     <databaseVersion>
+     <components>
+     <css>
+     <soy>
+     <javascript>
+     <widget>
+     <macro>
+     <urlmapping>
+     <sitemesh>
+     -->
+
+    <components>
+        <component id="admin-console">
+            <tab id="tab-appsnap-header" name="plugin.appsnap.admin"
+                 description="plugin.appsnap.admin.main.tooltip" role="Manage System, Manage Community, Manage Users">
+
+                <section id="section-appsnap" name="plugin.appsnap.admin"
+                         role="Manage System, Manage Community, Manage Users"
+                         description="plugin.appsnap.admin.tooltip">
+
+
+                    <item id="viewappsnap-Page" name="plugin.appsnap.admin.view"
+                          url="viewappsnap.jspa"
+                          description="plugin.appsnap.admin.view.tooltip"/>
+
+
+                    <item id="grabjvmappsnap-Page" name="plugin.appsnap.admin.grab.name"
+                          url="grabjvmappsnap.jspa"
+                          description="plugin.appsnap.admin.grab.desc"/>
+
+                </section>
+            </tab>
+
+
+        </component>
+    </components>
+
+</plugin>
