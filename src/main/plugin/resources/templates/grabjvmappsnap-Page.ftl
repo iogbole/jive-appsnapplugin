@@ -17,7 +17,7 @@
 
     <p></p>
     <fieldset>
-        <legend>Select interval (in seconds) and count</legend>
+        <legend>Select interval and count</legend>
         <p></p>
         <label>Interval</label>
         <select id="appsnapinterval" name="appsnapinterval">

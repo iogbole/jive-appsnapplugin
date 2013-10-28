@@ -16,7 +16,6 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class AppsnapImpl {
-    public static final String TIDY_HOUSE_VALUE = "appsnap.file.maxage";
     Logger log = Logger.getLogger(AppsnapImpl.class);
 
 
@@ -73,37 +72,31 @@ public class AppsnapImpl {
     //Delete  old appsnaps -takes no. of days and fileextention as parameters
     public void tidyHouse(long days, String fileExtension) {
 
-        if (days != 0L && fileExtension != null) {
-            File folder = new File(AppsnapConstants.appsnapDirPath);
-            try {
-                if (folder.exists()) {
-                    File[] listFiles = folder.listFiles();
-                    long eligibleForDeletion = System.currentTimeMillis() - (days * 24 * 60 * 60 * 1000L);
-                    for (File listFile : listFiles) {
-                        // !listFile.getName().endsWith(fileExtension) -- Dont delete .out
-                        if (!listFile.getName().endsWith(fileExtension) && listFile.lastModified() < eligibleForDeletion) {
-                            if (!listFile.delete()) {
-                                log.error("tidyHouse: Unable to Delete Files..No cause known");
-                                //listFile.delete();
-                            }
-                        } else {
-
-                            log.trace("tidyHouse : No file is eligible for deletion. no. of days is " + days + " and fileExtention " + fileExtension);
-
+        File folder = new File(AppsnapConstants.appsnapDirPath);
+        try {
+            if (folder.exists()) {
+                File[] listFiles = folder.listFiles();
+                long eligibleForDeletion = System.currentTimeMillis() - (days * 24 * 60 * 60 * 1000L);
+                for (File listFile : listFiles) {
+                    // !listFile.getName().endsWith(fileExtension) -- Dont delete .out
+                    if (listFile.getName().endsWith(fileExtension) && listFile.lastModified() < eligibleForDeletion) {
+                        if (!listFile.delete()) {
+                            log.error("tidyHouse: Unable to Delete Files..No cause known");
+                            //listFile.delete();
                         }
-                    }
+                    } else {
 
+                        log.trace("tidyHouse : No file is eligible for deletion. no. of days is " + days + " and fileExtention " + fileExtension);
+
+                    }
                 }
 
-            } catch (Exception ex) {
-                log.error("Error occured in tidyHouse " + ex.getStackTrace());
-                ex.printStackTrace();
             }
-        } else {
-            log.info("tidyHouse :No. of days cannot be " + days + " and fileExtention cannot be " + fileExtension);
 
+        } catch (Exception ex) {
+            log.error("Error occured in tidyHouse " + ex.getStackTrace());
+            //ex.printStackTrace();
         }
-
     }
 
 

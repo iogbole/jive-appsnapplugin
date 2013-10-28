@@ -63,6 +63,7 @@
                         <form id="appsnap-delete-form-${flist?html}" name="appsnap-delete-form-${flist?html}"
                               action="<@s.url action='viewappsnap' method='delete' />" method="post">
                             <input type="hidden" name="fileName" value="${flist}"/>
+                            <@jive.token name="plugin-delete-{flist?html}"/>
                         </form>
                     </td>
 
@@ -74,7 +75,8 @@
 </div>
 <p>   <@s.text name="plugin.appsnap.admin.view.backup"/> ${tidyHouseProperty} days. </p>
 <#else>
-<p><b>No appsnap exist on this node. Click <a href="<@s.url value='grabjvmappsnap.jspa'/>">here</a> to capture a new appsnap</p>
+<p><b>No appsnap exist on this node. Click <a href="<@s.url value='grabjvmappsnap.jspa'/>">here</a> to capture a new
+    appsnap</p>
 </#if>
 
 

@@ -1,1 +1,0 @@
-Place Freemarker templates here

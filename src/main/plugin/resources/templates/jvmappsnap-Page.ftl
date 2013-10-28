@@ -5,10 +5,7 @@
     <content tag="pagetitle">View Appsnaps</content>
     <content tag="pageID">viewappsnap-Page</content>
     <content tag="pagehelp"><h4>View Appsnap</h4></content>
-    <link rel="stylesheet" type="text/css"
-          href="${request.contextPath!}/plugins/appsnapplugin/resources/styles/dataurl.css"/>
-<@resource.javascript file="/plugins/appsnapplugin/resources/script/appsnappace-min.js"/>
-<@resource.javascript output="true"/>
+
     <script type="text/javascript">
 
         function deleteAppsnap(fileName) {
@@ -69,6 +66,7 @@
                         <form id="appsnap-delete-form-${flist?html}" name="appsnap-delete-form-${flist?html}"
                               action="<@s.url action='viewappsnap' method='delete' />" method="post">
                             <input type="hidden" name="fileName" value="${flist}"/>
+                            <@jive.token name="plugin-delete-{flist?html}"/>
                         </form>
                     </td>
 
@@ -80,7 +78,8 @@
 </div>
 <p>   <@s.text name="plugin.appsnap.admin.view.backup"/> ${tidyHouseProperty} days. </p>
 <#else>
-<p><b>No appsnap exist on this node. Click <a href="<@s.url value='grabjvmappsnap.jspa'/>">here</a> to capture a new appsnap</p>
+<p><b>No appsnap exist on this node. Click <a href="<@s.url value='grabjvmappsnap.jspa'/>">here</a> to capture a new
+    appsnap</p>
 </#if>
 
 

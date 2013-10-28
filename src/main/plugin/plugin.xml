@@ -1,7 +1,7 @@
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://www.jivesoftware.com/schemas/clearspace/2_5/plugin.xsd">
     <name>appsnapplugin</name>
-    <description>This plugin gives you the flexibility of capturing JVM thread dumps from the admin console.
+    <description>Take and manage appsnaps from admin console.
     </description>
     <author>Israel Ogbole</author>
     <version>1.0.0</version>
