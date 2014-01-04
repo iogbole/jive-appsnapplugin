@@ -1,25 +1,31 @@
+<#assign pageTitle = "Grab Appsnap">
 <html>
 <head>
-    <title>Grab Appsnap</title>
+    <title>${pageTitle}</title>
     <meta name="pageID" content="grabjvmappsnap-Page"/>
-    <content tag="pagetitle">Grab appsnap</content>
+    <content tag="pagetitle">${pageTitle}</content>
     <content tag="pageID">grabjvmappsnap-Page</content>
     <content tag="pagehelp">
-        <h4>Grab appsnap</h4>
+        <h3>${pageTitle}</h3>
     </content>
 
 </head>
 
 <body>
-<div class="pace-progress" id="pace-progress"></div>
-<form id="grabappsnapform" action="<@s.url action='jvmappsnap'/>" method="post">
+<form id="grabappsnapform" action="<@s.url action='appsnap-capture'/>" method="post">
     <p></p>
 
     <p></p>
     <fieldset>
-        <legend>Select interval and count</legend>
+        <legend><@s.text name="admin.decorator.menu.system.appsnap.grab"/></legend>
         <p></p>
-        <label>Interval</label>
+
+        <p></p>
+
+        <p></p>
+
+        <p></p>
+        <label><@s.text name="admin.decorator.menu.system.appsnap.grab.interval"/></label>
         <select id="appsnapinterval" name="appsnapinterval">
             <option value="1">1</option>
             <option value="2" selected>2</option>
@@ -32,7 +38,7 @@
             <option value="9">9</option>
         </select>
         &nbsp;
-        <label>Count</label>
+        <label><@s.text name="admin.decorator.menu.system.appsnap.grab.count"/></label>
         <select id="appsnapcount" name="appsnapcount">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -48,7 +54,17 @@
         <input id="grab-appsnap-buttom" name="grab-appsnap-buttom" type="submit" value="Execute"
                onclick="this.disabled=true; this.value='Please Wait...'; this.form.submit();">
 
+        <p></p>
+
+        <p></p>
+
+        <p></p>
+
+        <p></p>
+
+        <p></p>
     </fieldset>
+
 </form>
 <p></p>
 
