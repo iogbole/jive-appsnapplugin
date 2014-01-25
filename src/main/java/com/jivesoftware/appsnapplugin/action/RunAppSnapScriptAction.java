@@ -9,9 +9,7 @@ import com.jivesoftware.community.action.admin.AdminActionSupport;
 import com.jivesoftware.community.entitlements.authorization.AdminPage;
 import org.apache.log4j.Logger;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -81,52 +79,69 @@ public class RunAppSnapScriptAction extends AdminActionSupport implements Serial
             processBuilder.redirectErrorStream(true);
             process = processBuilder.start();
 
-        }
-        catch (IOException ex) {
+            InputStream processError = process.getErrorStream();
+            InputStreamReader isr = new InputStreamReader(processError);
+            BufferedReader br = new BufferedReader(isr);
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                line += "\n";
+
+            }
+            log.error(line);
+
+        } catch (IOException ex) {
             log.error("IOException occured in executeAppSnap " + ex);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             log.error("Error occured in executeAppSnap " + ex);
 
-        }
-        finally {
+        } finally {
             try {
                 int shellExitStatus = process.waitFor();
                 log.info("ShellExistStatus is " + shellExitStatus);
-                if (shellExitStatus !=0 && shellExitStatus !=253) {
-                    //<-- TODO some timeout implementation here
+
+                if (shellExitStatus != 0 && shellExitStatus != 253) {
+
                     executeStatus = "exit-status";
-                    log.error(
-                            "Unexpected shell exit status- This means the appsnap script itself failed to execute successfully." +
-                                    "SSH to the node and ensure that the script has not been tampered with by running: sh /usr/local/jive/bin/appsnap -i 2 -c 5 >> appsnap.out ");
+
+                    log.error("Unexpected shell exit status- This means the appsnap script itself failed to execute successfully." +
+                            "SSH to the node and ensure that the script has not been tampered with by running: sh /usr/local/jive/bin/appsnap -i 2 -c 5 -o appsnap.out ");
+
+                    // wait for 3 seconds and then destroy the process
+                    // Thread.sleep(30000);
+                    process.destroy();
+
                     return "Failed to run script for unknown reasons";
                     //  throw new RuntimeException("Could not run shell script RuntimeException " +scriptDir+shellScript);
-                }else{
+                } else {
                     executeStatus = "success";
                 }
-
-            }
-            catch (InterruptedException ex) {
+            } catch (InterruptedException ex) {
+                log.error("Shell Script process was interrupted" + ex);
+            } catch (Exception ex) {
                 log.error("Shell Script process was interrupted" + ex);
             }
-            try {
-                process.getInputStream().close();
 
-            }
-            catch (Exception ex) {
+            try {
+                if (process != null) {
+                    process.getInputStream().close();
+                }
+
+            } catch (Exception ex) {
                 log.warn("Cannot close process.getInputStream() - could cause memory leak" + ex);
             }
             try {
-                process.getOutputStream().close();
-            }
-            catch (Exception ex) {
+                if (process != null) {
+                    process.getOutputStream().close();
+                }
+            } catch (Exception ex) {
                 log.warn("Cannot close process.getInputStream() - could cause memory leak" + ex);
 
             }
             try {
-                process.getErrorStream().close();
-            }
-            catch (Exception ex) {
+                if (process != null) {
+                    process.getErrorStream().close();
+                }
+            } catch (Exception ex) {
                 log.warn("Cannot close process.getErrorStream() - could cause memory leak" + ex);
 
             }
@@ -137,25 +152,23 @@ public class RunAppSnapScriptAction extends AdminActionSupport implements Serial
     }
 
     public String getExecuteStatus() {
-        log.info("Execute status is " + executeStatus);
+        log.trace("Execute status is " + executeStatus);
         return executeStatus;
     }
 
     public ArrayList getFilelist() {
         ArrayList al = new ArrayList();
-        try{
+        try {
             File dir = new File(AppsnapConstants.appsnapDirPath);
             String[] appsnaps = dir.list();
             if (appsnaps == null) {
                 log.debug("no appsnap exist");
-            }
-            else {
+            } else {
                 al.addAll(Arrays.asList(appsnaps));
                 //Sort the files in desceding order of creationdate
                 Collections.sort(al, Collections.reverseOrder());
             }
-        }
-        catch (Exception ex ){
+        } catch (Exception ex) {
             log.error(ex);
         }
         return al;
