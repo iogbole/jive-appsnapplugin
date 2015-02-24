@@ -15,7 +15,6 @@ It so happened that I needed an appsnap while I was on a webex with a customer a
 The Appsnap plugin give Jive customers the ability to capture, download and manage appsnaps from Jive admin console seamlessly. 
 
 ----------
-
 How it works
 ---------
  - The plugin utilizes the appsnap executable, so I assumed that all (5.0.x +) Jive instances have the appsnap script in /usr/local/jive/bin/appsnap
@@ -35,17 +34,18 @@ Alright, these are some screenshots for your enjoyment:
 
 **Home page**: Displays the history of previous appsnaps.
 
-![enter image description here][1]
+![enter image description here](https://lh3.googleusercontent.com/fNfv8gpZzVB8tWP3AQR91pgImVVmp6zTki8DI0yR5qk=s0)
 
 **Capture appsnap**: Takes Interval and Count as parameters, the default values are 2 and 5 respectively.
 
-![enter image description here][2]
+![enter image description here](https://lh3.googleusercontent.com/scywhu7MVYQDNx92UlOqQmt0pZN3d9tBAdY8RXkqrIw=s0)
 
 The Execute button is disabled on click - this is to prevent running multiple commands as this page might take a while to generate the appsnap:
-![enter image description here][3]
+
+![enter image description here](https://lh3.googleusercontent.com/5EyRGtdsT3xl8nSLdjq_J40mu5enn2Ay1DMCAldatHI=s0)
 
 The Result: Renders the new appsnap. The files are sorted in descending order with respect to their timestamps.
-![enter image description here][4]
+![enter image description here](https://lh3.googleusercontent.com/NrVNWUsdvOVcegFB9OYNDURTtk67yMptmmDXXKAOyeo=s0)
 
 Road Map
 ---------
@@ -64,14 +64,9 @@ Supported Jive version
 -----------------------
 This version was tested on 6.0.{1-3}, but it should work on any 5.0 x and 7.x instance because nothing is requires from a specific version.
 
-
-  [1]: https://lh6.googleusercontent.com/-lusaC_1ElY8/U6s0uWalaaI/AAAAAAAABTo/OVax0cEPvYQ/s0/resource1.jpg "resource1.jpg"
-  [2]: https://lh6.googleusercontent.com/-3PID9URcVPI/U6s1HwdXizI/AAAAAAAABT0/c6NPBHOoa7o/s0/resource2.jpg "resource2.jpg"
-  [3]: https://lh6.googleusercontent.com/-knomhlipLY8/U6s1bCDWdUI/AAAAAAAABUA/olc66vlMKFo/s0/resource3.jpg "resource3.jpg"
-  [4]: https://lh3.googleusercontent.com/-K4m5l1y6M88/U6s1qwqcvgI/AAAAAAAABUM/A0aKesxiLy8/s0/resource4.jpg "resource4.jpg"
   [5]: https://java.net/projects/tda
   [6]: http://docs.oracle.com/javase/7/docs/api/java/lang/ProcessBuilder.html
-  [7]: https://lh6.googleusercontent.com/-Wa6IdxYd6Ec/U6srRu1ovLI/AAAAAAAABTM/Bvz4NP1Sewc/s0/resource4.jpg "resource4.jpg"
+
   [8]: http://math.stackexchange.com/
   [9]: http://daringfireball.net/projects/markdown/syntax "Markdown"
   [10]: https://github.com/jmcmanus/pagedown-extra "Pagedown Extra"
